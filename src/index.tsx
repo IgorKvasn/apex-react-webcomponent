@@ -12,8 +12,24 @@ import ReactWebComponent from "react-web-component";
 //   document.getElementById('root')
 // );
 
+// @ts-ignore
+(window.nnCssFiles || []).forEach((file) => {
+  var link = document.createElement("link");
+  link.href = file;
+  link.type = "text/css";
+  link.rel = "stylesheet";
+  //link.media = "screen,print";
+
+  document.getElementsByTagName("head")[0].appendChild(link);
+});
+
 if (!customElements.get("my-component")) {
-  ReactWebComponent.create(<App />, "my-component");
+  ReactWebComponent.create(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    "my-component"
+  );
 }
 
 // If you want to start measuring performance in your app, pass a function
