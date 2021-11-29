@@ -1,11 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { Link, MemoryRouter as Router, Route, Routes } from "react-router-dom";
+// import ReactWebComponent from "react-web-component";
+import Page1 from "./pages/page1/page1";
+import Page2 from "./pages/page2/page2";
+
+import { useEffect, useRef } from "react";
 // import logo from "./logo.sv g";
-import "./App.css";
+// import "./App.css";
 
 function App() {
   const appRef = useRef<HTMLDivElement>(null);
-
-  const [value, setValue] = useState(1);
 
   useEffect(() => {
     if (!!appRef.current) {
@@ -27,38 +31,28 @@ function App() {
   )?.value;
   console.log("logged user", loggedUser);
 
-  function increment() {
-    setValue(value + 1);
-  }
-
   return (
-    <div className="App" ref={appRef}>
-      <header className="App-header">
-        <img
-          src="https://rawcdn.githack.com/IgorKvasn/apex-react-webcomponent/94fa2d0d770aa5bad7438f28a97d483201a45d70/build/logo512.png"
-          className="App-logo"
-          alt="logo"
-        />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div ref={appRef}>
+      <Router>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            width: "8em",
+            justifyContent: "space-around",
+            fontSize: "28px",
+            marginBottom: "1em",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-      <button
-        type="button"
-        style={{ marginTop: "1em" }}
-        onClick={() => increment()}
-      >
-        Click me
-      </button>
-      {value}
+          <Link to="/">Page 1</Link>
+          <Link to="/page2">Page 2</Link>
+        </div>
+
+        <Routes>
+          <Route path="/" element={<Page1 />} />
+          <Route path="/page2" element={<Page2 />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
