@@ -12,7 +12,9 @@ import ReactWebComponent from "react-web-component";
 //   document.getElementById('root')
 // );
 
-ReactWebComponent.create(<App />, "my-component");
+if (!customElements.get("my-component")) {
+  ReactWebComponent.create(<App />, "my-component");
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
