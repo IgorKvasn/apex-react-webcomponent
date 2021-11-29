@@ -1,27 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // import logo from "./logo.sv g";
 import "./App.css";
 
 function App() {
+  const appRef = useRef<HTMLDivElement>(null);
+
   const [value, setValue] = useState(1);
 
-  // @ts-ignore
-  (window.nnCssFiles || []).forEach((file) => {
-    var link = document.createElement("link");
-    link.href = file;
-    link.type = "text/css";
-    link.rel = "stylesheet";
-    //link.media = "screen,print";
+  useEffect(() => {
+    if (!!appRef.current) {
+      // @ts-ignore
+      (window.nnCssFiles || []).forEach((file) => {
+        var link = document.createElement("link");
+        link.href = file;
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        //link.media = "screen,print";
 
-    document.getElementsByTagName("head")[0].appendChild(link);
-  });
+        appRef.current!.appendChild(link);
+      });
+    }
+  }, [appRef]);
 
   function increment() {
     setValue(value + 1);
   }
 
   return (
-    <div className="App">
+    <div className="App" ref={appRef}>
       <header className="App-header">
         <img
           src="https://rawcdn.githack.com/IgorKvasn/apex-react-webcomponent/94fa2d0d770aa5bad7438f28a97d483201a45d70/build/logo512.png"
