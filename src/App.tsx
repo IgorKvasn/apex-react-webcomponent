@@ -22,6 +22,11 @@ function App() {
     }
   }, [appRef]);
 
+  const loggedUser = (
+    document.querySelector("#APEX_USERNAME") as HTMLInputElement
+  )?.value;
+  console.log("logged user", loggedUser);
+
   function increment() {
     setValue(value + 1);
   }
