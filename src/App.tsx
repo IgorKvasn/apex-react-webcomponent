@@ -5,6 +5,17 @@ import "./App.css";
 function App() {
   const [value, setValue] = useState(1);
 
+  // @ts-ignore
+  (window.nnCssFiles || []).forEach((file) => {
+    var link = document.createElement("link");
+    link.href = file;
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    //link.media = "screen,print";
+
+    document.getElementsByTagName("head")[0].appendChild(link);
+  });
+
   function increment() {
     setValue(value + 1);
   }
