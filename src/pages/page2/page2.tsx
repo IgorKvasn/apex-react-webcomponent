@@ -17,13 +17,37 @@ function Page2() {
       .then((data) => console.log(data));
   }
 
+  function openApexDialog() {
+    const randomValue = new Date();
+
+    //@ts-expect-error
+    apex.item("APEX_VARIABLE_1").setValue(randomValue.getTime());
+    const event = new Event("CallModal");
+    document.dispatchEvent(event);
+  }
+
   return (
     <>
       <h1>Ja som page 2</h1>
-      <button onClick={performRequest}>Do request</button>
-      <input ref={inputElem} />
+      <div>
+        <button onClick={performRequest}>Do request</button>
+      </div>
+      <div>
+        <input ref={inputElem} />
+      </div>
+      <div>
+        <button onClick={openApexDialog}>Open dialog</button>
+      </div>
     </>
   );
 }
 
 export default Page2;
+
+/* 
+const event = new Event('CallModal');
+document.dispatchEvent(event)
+apex.item('APEX_USERNAME').setValue('aku ches')
+apex.item('APEX_USERNAME').getValue()
+document.dispatchEvent(event)
+ */
