@@ -25,10 +25,10 @@ function Page2() {
       //.item("APEX_VARIABLE_1")
       .item("APEX_USERNAME")
       .setValue(`random-vaue-${randomValue.getTime()}`);
-    setTimeout(() => {
-      const event = new Event("CallModal");
-      document.dispatchEvent(event);
-    }, 5_000);
+    // setTimeout(() => {
+    const event = new Event("CallModal");
+    document.dispatchEvent(event);
+    // }, 5_000);
   }
 
   return (
