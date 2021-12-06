@@ -22,10 +22,13 @@ function Page2() {
 
     //@ts-expect-error
     apex
-      .item("APEX_VARIABLE_1")
+      //.item("APEX_VARIABLE_1")
+      .item("APEX_USERNAME")
       .setValue(`random-vaue-${randomValue.getTime()}`);
-    const event = new Event("CallModal");
-    document.dispatchEvent(event);
+    setTimeout(() => {
+      const event = new Event("CallModal");
+      document.dispatchEvent(event);
+    }, 5_000);
   }
 
   return (
