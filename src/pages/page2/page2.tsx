@@ -21,7 +21,9 @@ function Page2() {
     const randomValue = new Date();
 
     //@ts-expect-error
-    apex.item("APEX_VARIABLE_1").setValue(randomValue.getTime());
+    apex
+      .item("APEX_VARIABLE_1")
+      .setValue(`random-vaue-${randomValue.getTime()}`);
     const event = new Event("CallModal");
     document.dispatchEvent(event);
   }
